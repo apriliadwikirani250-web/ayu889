@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Logout Sederhana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0; padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0096c7;
+        }
+        #dashboard {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
+        h2 {
+            color: #023e8a;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Form Login -->
+<div class="container" id="loginForm">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Masukkan Nama" required>
+    <input type="text" id="region" placeholder="Daerah Asal" required>
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- Dashboard setelah login -->
+<div class="container" id="dashboard">
+    <h2>Selamat Datang, <span id="displayName"></span>!</h2>
+    <p>Daerah Asal Anda: <span id="displayRegion"></span></p>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+function login() {
+    const name = document.getElementById('username').value.trim();
+    const region = document.getElementById('region').value.trim();
+
+    if(name === "" || region === "") {
+        alert("Silakan isi Nama dan Daerah Asal.");
+        return;
+    }
+
+    // Sembunyikan form login, tampilkan dashboard
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+
+    // Tampilkan nama dan daerah
+    document.getElementById('displayName').innerText = name;
+    document.getElementById('displayRegion').innerText = region;
+}
+
+function logout() {
+    // Kembali ke login
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+
+    // Reset input
+    document.getElementById('username').value = "";
+    document.getElementById('region').value = "";
+}
+</script>
+
+</body>
+</html>
